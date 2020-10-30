@@ -12,7 +12,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-
+Plugin 'scrooloose/nerdtree'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 
@@ -80,3 +80,5 @@ nnoremap <C-H> <C-W><C-H>
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+" Nerd tree
+map <C-n> :NERDTreeToggle<CR>
