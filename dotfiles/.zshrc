@@ -112,5 +112,5 @@ alias ssrv='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app
 alias gogit='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://github.roche.com/federerj?tab=repositories/"'
 alias govim='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://vim.rtorr.com/"'
 alias bee='ssh federerj@rbaub000162.bas.roche.com'
-
+alias gt="sh ~/dotfiles/dotfiles/.scripts/generate_template.sh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
