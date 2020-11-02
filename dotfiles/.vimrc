@@ -68,9 +68,6 @@ set incsearch
 " show the mathing brackets
 set showmatch
 
-" highlight current line
-set cursorline
-
 "split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -82,3 +79,8 @@ let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 " Nerd tree
 map <C-n> :NERDTreeToggle<CR>
+" Changing color depending on mode
+" Enable CursorLine
+set cursorline
+
+
