@@ -1,0 +1,6 @@
+#! bin/bash
+echo "Adding aliases"
+alias shiny_logs="cd /var/log/shiny-server/3.6.1/users/"
+alias shiny_server="cd /srv/shiny-server/3.6.1/users/federerj/"
+alias runTests="/opt/bee_tools/R/3.6.1/lib64/R/bin/Rscript -e 'runTests()'"
+alias ratom="~/bin/ratom"
