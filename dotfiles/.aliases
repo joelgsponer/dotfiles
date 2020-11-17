@@ -1,6 +1,20 @@
+<<<<<<< HEAD
 #! bin/bash
 echo "Adding aliases"
 alias shiny_logs="cd /var/log/shiny-server/3.6.1/users/"
 alias shiny_server="cd /srv/shiny-server/3.6.1/users/federerj/"
 alias runTests="/opt/bee_tools/R/3.6.1/lib64/R/bin/Rscript -e 'runTests()'"
 alias ratom="~/bin/ratom"
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+alias govim='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://vim.rtorr.com/"'
+alias rsrv='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://r.roche.com/s/57ea13c286bd33c286bd3/workspaces/"'
+alias ssrv='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://shiny.roche.com/3.5.3/users/federerj/"'
+alias gogit='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://github.roche.com/federerj?tab=repositories/"'
+alias gt="sh ~/dotfiles/dotfiles/.scripts/generate_template.sh"
+alias warrior="cd ~/dev/waRRior"
+alias srczsh='source ~/.zshrc'
+alias aos='cd ~/dev/AceOfSpades'
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias bee='ssh federerj@rbaub000162.bas.roche.com'
+alias beetunnel='ssh -N -L 2342:localhost:2342 federerj@rbaub000162.bas.roche.com'  
