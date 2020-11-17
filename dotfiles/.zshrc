@@ -105,12 +105,18 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias rsrv='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://r.roche.com/s/57ea13c286bd33c286bd3/workspaces/"'
-alias ssrv='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://shiny.roche.com/3.5.3/users/federerj/"'
-alias gogit='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://github.roche.com/federerj?tab=repositories/"'
-alias govim='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://vim.rtorr.com/"'
-alias bee='ssh federerj@rbaub000162.bas.roche.com'
-alias gt="sh ~/dotfiles/dotfiles/.scripts/generate_template.sh"
+source ~/.aliases
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+# Starship
+eval "$(starship init zsh)"
+
+# Custom functions
+# Show contents of the directory after changing to it
+function cd () {
+  builtin cd "$1"
+  ls -ACF
+}
+
