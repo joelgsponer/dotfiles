@@ -9,14 +9,28 @@ Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 call plug#end()
 
+let g:LanguageClient_serverCommands = {
+    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
+    \ }
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
 
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F3> :call LanguageClient#textDocument_rename()<CR>
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap <leader>a <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap <leader>a <Plug>(EasyAlign)
 map <C-n> :NERDTreeToggle<CR>
+nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
@@ -97,3 +111,4 @@ imap <F2> <Plug>RStart
 vmap <F2> <Plug>RStart
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
+

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #! bin/bash
 echo "Adding aliases"
 alias shiny_logs="cd /var/log/shiny-server/3.6.1/users/"
