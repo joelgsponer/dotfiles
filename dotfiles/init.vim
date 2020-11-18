@@ -91,6 +91,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 "let g:palenight_color_overrides = {
+"
 "\    'black': { 'gui': '#000000', "cterm": "0", "cterm16": "0" },
 "\}
 set background=dark
@@ -100,6 +101,8 @@ command W w !sudo tee % > /dev/null " Write write protected files
 
 " Key mapping
 "split navigations
+nnoremap d "_d
+nnoremap m d
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -116,7 +119,7 @@ tnoremap kj <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
 
 " Line moving
-" nnoremap ª :m .+1<CR>==
+" nnoremap ª :m .+1<CR>==:
 nnoremap ˚ :m .-2<CR>==
 nnoremap ∆ :m .+<CR>==
 inoremap ˚ <Esc>:m .-2<CR>==gi

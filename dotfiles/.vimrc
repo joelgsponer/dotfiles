@@ -1,34 +1,10 @@
 set nocompatible              " required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-" This gave me some problems 
-set rtp+=~/.vim/bundle/Vundle.vim
-set rtp+=/usr/local/opt/fzf
-call vundle#begin()
 
-
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'itchyny/lightline.vim'
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
-" add all your plugins here (note older versions of Vundle
-" used Bundle instead of Plugin)
-
-" ...
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
 
 set mouse=a
 syntax on 
-colorscheme sublimemonokai
 " :W sudo saves the file when the file is open in readonly mode
 command W w !sudo tee % > /dev/null
 
@@ -72,12 +48,6 @@ set incsearch
 " show the mathing brackets
 set showmatch
 
-"split navigations
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -86,27 +56,44 @@ map <C-n> :NERDTreeToggle<CR>
 " Changing color depending on mode
 " Enable CursorLine
 set cursorline
-set relativenumber
 set clipboard=unnamed
 set clipboard=unnamedplus
 
+" Key mapping
+"split navigations
+nnoremap d "_d
+nnoremap m d
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-J> <C-W><C-J>
+tnoremap <C-K> <C-W><C-K>
+tnoremap <C-L> <C-W><C-L>
+tnoremap <C-H> <C-W><C-H>
+tnoremap <C-H> <C-W><C-H>
 " esc in insert mode
+nnoremap kj <esc>
 inoremap kj <esc>
-
-" esc in command mode
-cnoremap kj <C-C>
-" Note: In command mode mappings to esc run the command for some odd
-" historical vi compatibility reason. We use the alternate method of
-" existing which is Ctrl-C
-
-
-nmap <F3> i<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
-imap <F3> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
-
-
-autocmd BufRead scp://* :set bt=acwrite
+vnoremap kj <esc>
+tnoremap kj <C-\><C-n>
+tnoremap <Esc> <C-\><C-n>
 
 " Line moving
-" nnoremap ª :m .+1<CR>==
+" nnoremap ª :m .+1<CR>==:
 nnoremap ˚ :m .-2<CR>==
 nnoremap ∆ :m .+<CR>==
+inoremap ˚ <Esc>:m .-2<CR>==gi
+inoremap ∆ <Esc>:m .+1<CR>==gi
+vnoremap ˚ :m '<-2<CR>gv=gv
+vnoremap ∆ :m '>+1<CR>gv=gv
+" Resizing
+nnoremap <A-Up> :res -5<CR>
+nnoremap <A-Down> :res +5<CR>
+nnoremap <A-Left> :vertical resize -5<CR>
+nnoremap <A-Right> :vertical resize +5<CR>
+inoremap <Up> <Up><Esc>
+inoremap <Down> <Down><Esc>
+inoremap <Right> <Right><Esc>
+inoremap <Left> <Left><Esc>
+
+
