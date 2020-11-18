@@ -1,13 +1,8 @@
 set nocompatible              " required
 filetype off                  " required
-
-
-
-set mouse=a
 syntax on 
 " :W sudo saves the file when the file is open in readonly mode
 command W w !sudo tee % > /dev/null
-
 """"""""""""""""""""""""""""""""""""
 " Line
 """"""""""""""""""""""""""""""""""""
@@ -67,16 +62,10 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-J> <C-W><C-J>
-tnoremap <C-K> <C-W><C-K>
-tnoremap <C-L> <C-W><C-L>
-tnoremap <C-H> <C-W><C-H>
-tnoremap <C-H> <C-W><C-H>
 " esc in insert mode
 nnoremap kj <esc>
 inoremap kj <esc>
 vnoremap kj <esc>
-tnoremap kj <C-\><C-n>
-tnoremap <Esc> <C-\><C-n>
 
 " Line moving
 " nnoremap ª :m .+1<CR>==:
