@@ -114,6 +114,7 @@ colorscheme onedark
 
 " Settings
 set nocompatible            " disable compatibility to old-time vi
+set smartindent
 set hlsearch
 set showmatch               " show matching brackets.
 set ignorecase              " case insensitive matching
@@ -140,13 +141,15 @@ set incsearch
 hi Cursor guifg=black guibg=green gui=reverse
 syntax on                   " syntax highlighting
 filetype plugin indent on   " allows auto-indenting depending on file type
-set timeoutlen=100
+set timeoutlen=200
 
 """""""""""""""""""""""
 " Key mapping
 "split navigations
 nnoremap <Backspace>
-inoremap { {}<ESC>ha
+inoremap <C-]> <C-t>
+inoremap <C-[> <C-d>
+inoremap { {<ESC>o}<ESC>%o<C-]>
 inoremap ( ()<ESC>ha
 inoremap [ []<ESC>ha
 command W w !sudo tee % > /dev/null " Write write protected files
