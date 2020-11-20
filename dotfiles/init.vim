@@ -8,13 +8,16 @@ let g:mapleader = " "
 call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+Plug 'airblade/vim-gitgutter'
 "Plug 'autozimu/LanguageClient-neovim', {
 "    \ 'branch': 'next',
 "    \ 'do': 'bash install.sh',
 "    \ }
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'joshdick/onedark.vim'
@@ -30,7 +33,7 @@ call plug#end()
 
 " Plugin keymappings
 "" fzf
-map ; :Files<CR>
+map ; :tabnew <bar> :Files <CR>
 "" EasyMotion
 """ <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -137,11 +140,12 @@ set incsearch
 hi Cursor guifg=black guibg=green gui=reverse
 syntax on                   " syntax highlighting
 filetype plugin indent on   " allows auto-indenting depending on file type
-
+set timeoutlen=100
 
 """""""""""""""""""""""
 " Key mapping
 "split navigations
+nnoremap <Backspace>
 command W w !sudo tee % > /dev/null " Write write protected files
 nnoremap d "_d
 nnoremap m d
@@ -154,12 +158,12 @@ tnoremap <C-L> <C-W><C-L>
 tnoremap <C-H> <C-W><C-H>
 tnoremap <C-H> <C-W><C-H>
 " esc in insert mode
-nnoremap <C-Space> <esc>
-cnoremap <C-Space> <esc>
-inoremap <C-Space> <esc>
-vnoremap <C-Space> <esc>
-xnoremap <C-Space> <esc>
-tnoremap <C-Space> <C-\><C-n>
+nnoremap kj <esc>
+cnoremap kj <esc>
+vnoremap kj <esc>
+inoremap kj <esc>
+xnoremap kj <esc>
+tnoremap kj <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
 
 " Line moving
