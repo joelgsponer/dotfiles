@@ -146,7 +146,7 @@ set timeoutlen=200
 """""""""""""""""""""""
 " Key mapping
 "split navigations
-nnoremap <Backspace><Backspace> :q!<CR>
+nnoremap <Backspace> :noh<CR>
 nnoremap <C-s> :w<CR>
 inoremap <C-]> <C-t>
 inoremap <C-[> <C-d>
