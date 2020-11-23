@@ -146,13 +146,15 @@ set timeoutlen=200
 """""""""""""""""""""""
 " Key mapping
 "split navigations
-nnoremap <Backspace>
+nnoremap <Backspace><Backspace> :q!<CR>
+nnoremap <C-s> :w<CR>
 inoremap <C-]> <C-t>
 inoremap <C-[> <C-d>
 inoremap { {<ESC>o}<ESC>%o<C-]>
 inoremap ( ()<ESC>ha
 inoremap [ []<ESC>ha
 command W w !sudo tee % > /dev/null " Write write protected files
+noremap # m
 nnoremap d "_d
 nnoremap m d
 nnoremap <C-J> <C-W><C-J>
