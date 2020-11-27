@@ -6,6 +6,7 @@ nnoremap <SPACE> <Nop>
 let g:mapleader = " "
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
+Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -194,9 +195,12 @@ nnoremap <leader>s :set invspell<CR>
 inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>
 
 " R
+nnoremap <C-CR> :TREPLSendFile<CR>
+
 map <F2> <Plug>RStart 
 imap <F2> <Plug>RStart
 vmap <F2> <Plug>RStart
 vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
+nmap <Space><Space> <Plug>RDSendLine
 let R_assign = 0
