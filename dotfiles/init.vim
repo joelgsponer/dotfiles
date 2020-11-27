@@ -115,6 +115,7 @@ colorscheme onedark
 
 
 " Settings
+let NERDTreeShowHidden=1
 set nocompatible            " disable compatibility to old-time vi
 set smartindent
 set hlsearch
@@ -193,6 +194,8 @@ inoremap <Down> <Down><ESC>
 inoremap <Up> <Up><ESC>
 inoremap <Left> <Left><ESC>
 inoremap <Right> <Right><ESC>
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Line moving
 " nnoremap ª :m .+1<CR>==:
 nnoremap ˚ :m .-2<CR>==
@@ -222,3 +225,8 @@ vmap <Space> <Plug>RDSendSelection
 nmap <Space> <Plug>RDSendLine
 nmap <Space><Space> <Plug>RDSendLine
 let R_assign = 0
+let R_app = "radian"
+let R_cmd = "R"
+let R_hl_term = 0
+let R_args = []  " if you had set any
+let R_bracketed_paste = 1
