@@ -140,7 +140,9 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
-hi Cursor guifg=black guibg=green gui=reverse
+hi! Cursor ctermfg=1 ctermbg=1 guifg=#FF0000 guibg=#FF0000
+set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
+set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 syntax on                   " syntax highlighting
 filetype plugin indent on   " allows auto-indenting depending on file type
 set timeoutlen=200
@@ -157,6 +159,10 @@ vnoremap <C-z> <ESC>u
 " Indentation
 inoremap <C-]> <C-t>
 inoremap <C-[> <C-d>
+nnoremap <C-]> >>
+nnoremap <C-[> <<
+vnoremap <C-]> >gv
+vnoremap <C-[> <gv
 " Brackets
 inoremap { {<ESC>o}<ESC>%o<C-]>
 inoremap ( ()<ESC>ha
