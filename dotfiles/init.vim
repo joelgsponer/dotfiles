@@ -6,6 +6,7 @@ nnoremap <SPACE> <Nop>
 let g:mapleader = " "
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
+Plug 'JuliaEditorSupport/julia-vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -145,18 +146,31 @@ set timeoutlen=200
 
 """""""""""""""""""""""
 " Key mapping
-"split navigations
+nnoremap <C-r> <Esc>:source $MYVIMRC<CR>
+" remove search highlights
 nnoremap <Backspace> :noh<CR>
-nnoremap <C-s> :w<CR>
+" Undo
+inoremap <C-z> <ESC>u
+nnoremap <C-z> <ESC>u
+vnoremap <C-z> <ESC>u
+" Indentation
 inoremap <C-]> <C-t>
 inoremap <C-[> <C-d>
+" Brackets
 inoremap { {<ESC>o}<ESC>%o<C-]>
 inoremap ( ()<ESC>ha
 inoremap [ []<ESC>ha
-command W w !sudo tee % > /dev/null " Write write protected files
-noremap # m
+" Saving
+nnoremap <C-s> <Esc>:w<CR>
+inoremap <C-s> <Esc>:w<CR>
+vnoremap <C-s> <Esc>:w<CR>
+" Quitting
+noremap <C-q> <Esc>:q!<CR>
+"command W w!sudo tee % > /dev/null " Write write protected files
+" Copy and pasting
 nnoremap d "_d
 nnoremap m d
+" Window navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -173,7 +187,11 @@ inoremap kj <esc>
 xnoremap kj <esc>
 tnoremap kj <C-\><C-n>
 tnoremap <Esc> <C-\><C-n>
-
+" Arrow keys
+inoremap <Down> <Down><ESC>
+inoremap <Up> <Up><ESC>
+inoremap <Left> <Left><ESC>
+inoremap <Right> <Right><ESC>
 " Line moving
 " nnoremap ª :m .+1<CR>==:
 nnoremap ˚ :m .-2<CR>==
