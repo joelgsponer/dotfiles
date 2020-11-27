@@ -162,7 +162,7 @@ c() {
 
 # b - browse chrome bookmarks
 b() {
-     bookmarks_path=~/Library/Application\ Support/Google/Chrome/Default/Bookmarks
+    bookmarks_path=/Users/federerj/Library/Application Support/Google/Chrome/Default/Bookmarks
 
      jq_script='
         def ancestors: while(. | length >= 2; del(.[-1,-2]));
