@@ -1,7 +1,7 @@
 """"""""""""""""""""""
 """Nvim config file"""
 """"""""""""""""""""""
-" Save this file to ~/.config/nvim/init.vim
+a Save this file to ~/.config/nvim/init.vim
 nnoremap <SPACE> <Nop>
 let g:mapleader = " "
 " PLUGINS
@@ -29,6 +29,9 @@ Plug 'tpope/vim-surround'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'kassio/neoterm'
+Plug 'ayu-theme/ayu-vim'
+Plug 'rakr/vim-one'
+Plug 'chriskempson/base16-vim'
 call plug#end()
 
 
@@ -111,7 +114,8 @@ endif
       "\    'black': { 'gui': '#000000', "cterm": "0", "cterm16": "0" },
 "\}
 set background=dark
-colorscheme onedark
+let ayucolor="dark"   " for dark version of theme
+colorscheme one
 
 
 " Settings
@@ -120,6 +124,7 @@ set nocompatible            " disable compatibility to old-time vi
 set smartindent
 set hlsearch
 set showmatch               " show matching brackets.
+
 set ignorecase              " case insensitive matching
 set mouse=a                 
 set hlsearch                " highlight search results
@@ -141,7 +146,6 @@ set ignorecase
 set smartcase
 set hlsearch
 set incsearch
-hi! Cursor ctermfg=1 ctermbg=1 guifg=#FF0000 guibg=#FF0000
 set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
 set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 syntax on                   " syntax highlighting
@@ -150,9 +154,9 @@ set timeoutlen=200
 
 """""""""""""""""""""""
 " Key mapping
+nnoremap <CR> o<Esc>
+nnoremap R ciw
 nnoremap <C-r> <Esc>:source $MYVIMRC<CR>
-" remove search highlights
-nnoremap <Backspace> :noh<CR>
 " Undo
 inoremap <C-z> <ESC>u
 nnoremap <C-z> <ESC>u
@@ -165,9 +169,9 @@ nnoremap <C-[> <<
 vnoremap <C-]> >gv
 vnoremap <C-[> <gv
 " Brackets
-inoremap { {<ESC>o}<ESC>%o<C-]>
-inoremap ( ()<ESC>ha
-inoremap [ []<ESC>ha
+"inoremap { {}<ESC>ha
+"inoremap ( ()<ESC>ha
+"inoremap [ []<ESC>ha
 " Saving
 nnoremap <C-s> <Esc>:w<CR>
 inoremap <C-s> <Esc>:w<CR>
@@ -221,6 +225,10 @@ nnoremap <leader>s :set invspell<CR>
 " Add date
 inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>
 
+" Tab navigation
+nnoremap <C-p> :tabNext<CR>
+nnoremap <C-o> :tabprevious<CR>
+
 " R
 nnoremap <C-CR> :TREPLSendFile<CR>
 
@@ -236,3 +244,23 @@ let R_cmd = "R"
 let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
+
+" Banners
+autocmd FileType vim map <C-L> I"<Del>  <Esc>A  "<Del><Esc>yyp0lv$hhr"yykPjj
+autocmd FileType javascript,php,c map <leader>b I//  <Esc>A  //<Esc>yyp0llv$hhhr-yykPjj
+autocmd FileType python,ruby,sh,zsh map <leader>ccb I#  <Esc>A  #<Esc>yyp0lv$hhr-yykPjj
+autocmd FileType css map <leader>ccb I/*  <Esc>A  */<Esc>yyp0llv$r-$hc$*/<Esc>b
+
+map <C-L> I"<Del>  <Esc>A  "<Del><Esc>yyp0lv$hhr"yykPjj
+
+" ---
+" Post Load Fixes
+" ---
+function CorrectColorScheme()
+  highlight SignColumn guibg=black
+  hi Normal guibg=#0a0909
+  hi Cursor ctermfg=1 ctermbg=1 guibg=#750f00
+  highlight CursorLine guibg=#000000
+endfunction
+autocmd VimEnter * call CorrectColorScheme()
+
