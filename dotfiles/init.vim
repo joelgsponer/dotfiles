@@ -1,14 +1,12 @@
 """"""""""""""""""""""
 """Nvim config file"""
 """"""""""""""""""""""
-a Save this file to ~/.config/nvim/init.vim
 nnoremap <SPACE> <Nop>
 let g:mapleader = " "
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
 Plug 'vim-airline/vim-airline-themes'
-Plug 'JuliaEditorSupport/julia-vim'
-Plug 'junegunn/vim-easy-align'
+"Plug 'JuliaEditorSupport/julia-vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -20,18 +18,17 @@ Plug 'airblade/vim-gitgutter'
 "    \ }
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'drewtempelmeyer/palenight.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'joshdick/onedark.vim'
-Plug 'sheerun/vim-polyglot'
-Plug 'easymotion/vim-easymotion'
+"Plug 'sheerun/vim-polyglot'
+"Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-easymotion.vim'
+"Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'kassio/neoterm'
-Plug 'ayu-theme/ayu-vim'
+"Plug 'ayu-theme/ayu-vim'
 Plug 'rakr/vim-one'
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
 call plug#end()
 
 
