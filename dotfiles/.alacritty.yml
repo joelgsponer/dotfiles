@@ -49,7 +49,7 @@ font:
     # style: Retina
 
   # The bold font face
-  bold:
+bold:
     family: Hack
     # family: "Fira Code"
     # family: "Source Code Pro"
