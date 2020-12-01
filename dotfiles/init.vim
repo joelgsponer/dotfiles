@@ -1,7 +1,6 @@
 """"""""""""""""""""""
 """Nvim config file"""
 """"""""""""""""""""""
-a Save this file to ~/.config/nvim/init.vim
 nnoremap <SPACE> <Nop>
 let g:mapleader = " "
 " PLUGINS
