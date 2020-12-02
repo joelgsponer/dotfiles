@@ -168,12 +168,12 @@ nnoremap ∆ :m .+<CR>==
 inoremap ˚ <Esc>:m .-2<CR>==gi
 inoremap ∆ <Esc>:m .+1<CR>==gi
 vnoremap ˚ :m '<-2<CR>gv=gv
-vnoremap ∆ :m '>+1<CR>gv=gv
 " Resizing
-nnoremap <A-Up> :m .-2<CR>==
-nnoremap <A-Down> :m .+<CR>==
-nnoremap <A-Left> <<
-nnoremap <A-Right> >>
+
+nnoremap <S-Right> >>
+nnoremap <S-Left> <<
+nnoremap <S-Up>  :m .-2<CR>==
+nnoremap <S-Down>  :m .+<CR>==
 
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
