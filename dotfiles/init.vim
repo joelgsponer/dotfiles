@@ -5,30 +5,19 @@ nnoremap <SPACE> <Nop>
 let g:mapleader = " "
 " PLUGINS
 call plug#begin('~/.config/nvim/plugged')
-Plug 'vim-airline/vim-airline-themes'
-"Plug 'JuliaEditorSupport/julia-vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'airblade/vim-gitgutter'
-"Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'branch': 'next',
-"    \ 'do': 'bash install.sh',
-"    \ }
-"Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vim-airline/vim-airline'
-Plug 'joshdick/onedark.vim'
-"Plug 'sheerun/vim-polyglot'
-"Plug 'easymotion/vim-easymotion'
+Plug 'sheerun/vim-polyglot'
+Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'haya14busa/incsearch.vim'
-"Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'kassio/neoterm'
-"Plug 'ayu-theme/ayu-vim'
 Plug 'rakr/vim-one'
-"Plug 'chriskempson/base16-vim'
 call plug#end()
 
 
@@ -72,59 +61,28 @@ map g/ <Plug>(incsearch-stay)
 noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
 noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
 noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+nnoremap <C-f> <Esc> /
+inoremap <C-f> <Esc> /
+vnoremap <C-f> <Esc> /
+xnoremap <C-f> <Esc> /
 
-let g:LanguageClient_serverCommands = {
-    \ 'r': ['R', '--slave', '-e', 'languageserver::run()'],
-    \ }
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-noremap <silent> <F3> :call LanguageClient#textDocument_rename()<CR>
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap <leader>a <Plug>(EasyAlign)
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap <leader>a <Plug>(EasyAlign)
 map <C-n> :NERDTreeToggle<CR>
 nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 let g:neoterm_term_per_tab=1
 let g:neoterm_autoinsert=1
 let g:neoterm_shell='/bin/bash'
 let g:neoterm_default_mod='botright'
-let g:lightline = { 'colorscheme': 'onedark' }
-let g:airline_theme = "onedark"
-if (has("termguicolors"))
-if (has("nvim"))
-  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-endif
-" Italics for my favorite color scheme
-let g:onedark_terminal_italics=1
-"For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-"Based on Vim patch 7.4.1770 (`guicolors` option) < ttps://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-" < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  set termguicolors
-endif
-"let g:palenight_color_overrides = {
 "
-      "\    'black': { 'gui': '#000000', "cterm": "0", "cterm16": "0" },
-"\}
 set background=dark
-let ayucolor="dark"   " for dark version of theme
 colorscheme one
 
 
 " Settings
 let NERDTreeShowHidden=1
 set nocompatible            " disable compatibility to old-time vi
-set smartindent
-set hlsearch
 set showmatch               " show matching brackets.
-
 set ignorecase              " case insensitive matching
 set mouse=a                 
-set hlsearch                " highlight search results
 set tabstop=2               " number of columns occupied by a tab character
 set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
@@ -132,22 +90,18 @@ set shiftwidth=2            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set nowrap
-set wildmode=longest,list   " get bash-like tab completions
-set smarttab
 set cursorline
 set clipboard=unnamed
 set clipboard=unnamedplus
-set cc=80                   " set an 80 column border for good coding style
-set laststatus=1            " Remove white background of status line at bottom of nvim viewport (default is 2)
+set cc=80                  " set an 80 column border for good coding style
 set ignorecase
 set smartcase
-set hlsearch
 set incsearch
-set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
-set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 syntax on                   " syntax highlighting
 filetype plugin indent on   " allows auto-indenting depending on file type
 set timeoutlen=200
+set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
+set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 
 """""""""""""""""""""""
 " Key mapping
@@ -249,6 +203,9 @@ autocmd FileType python,ruby,sh,zsh map <leader>ccb I#  <Esc>A  #<Esc>yyp0lv$hhr
 autocmd FileType css map <leader>ccb I/*  <Esc>A  */<Esc>yyp0llv$r-$hc$*/<Esc>b
 
 map <C-L> I"<Del>  <Esc>A  "<Del><Esc>yyp0lv$hhr"yykPjj
+
+" R
+nnoremap <C-S-B> :!Rscript -e "devtools::build(); devtools::install();" <CR>
 
 " ---
 " Post Load Fixes
