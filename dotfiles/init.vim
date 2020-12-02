@@ -12,6 +12,7 @@ Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
+Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-surround'
 Plug 'haya14busa/incsearch.vim'
@@ -20,11 +21,10 @@ Plug 'kassio/neoterm'
 Plug 'rakr/vim-one'
 call plug#end()
 
-
-
 " Plugin keymappings
 "" fzf
-map ; :tabnew <bar> :Files <CR>
+map . :Files <CR>
+map , :Buffers <CR>
 "" EasyMotion
 """ <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -100,6 +100,7 @@ set incsearch
 syntax on                   " syntax highlighting
 filetype plugin indent on   " allows auto-indenting depending on file type
 set timeoutlen=200
+set termguicolors
 set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
 set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 
@@ -128,7 +129,10 @@ nnoremap <C-s> <Esc>:w<CR>
 inoremap <C-s> <Esc>:w<CR>
 vnoremap <C-s> <Esc>:w<CR>
 " Quitting
-noremap <C-q> <Esc>:q!<CR>
+nnoremap <C-q> <Esc>:q!<CR>
+inoremap <C-q> <Esc>:q!<CR>
+xnoremap <C-q> <Esc>:q!<CR>
+vnoremap <C-q> <Esc>:q!<CR>
 "command W w!sudo tee % > /dev/null " Write write protected files
 " Copy and pasting
 nnoremap d "_d
@@ -166,23 +170,22 @@ inoremap ∆ <Esc>:m .+1<CR>==gi
 vnoremap ˚ :m '<-2<CR>gv=gv
 vnoremap ∆ :m '>+1<CR>gv=gv
 " Resizing
-nnoremap <A-Up> :res -5<CR>
-nnoremap <A-Down> :res +5<CR>
-nnoremap <A-Left> :vertical resize -5<CR>
-nnoremap <A-Right> :vertical resize +5<CR>
+nnoremap <A-Up> :m .-2<CR>==
+nnoremap <A-Down> :m .+<CR>==
+nnoremap <A-Left> <<
+nnoremap <A-Right> >>
 
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
 " Add date
 inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>
 
-" Tab navigation
-nnoremap <C-p> :tabNext<CR>
-nnoremap <C-o> :tabprevious<CR>
+" Buffer navigation
+nnoremap <C-p> :bp<CR>
+nnoremap <C-o> :bn<CR>
 
 " R
 nnoremap <C-CR> :TREPLSendFile<CR>
-
 map <F2> <Plug>RStart 
 imap <F2> <Plug>RStart
 vmap <F2> <Plug>RStart
@@ -195,14 +198,6 @@ let R_cmd = "R"
 let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
-
-" Banners
-autocmd FileType vim map <C-L> I"<Del>  <Esc>A  "<Del><Esc>yyp0lv$hhr"yykPjj
-autocmd FileType javascript,php,c map <leader>b I//  <Esc>A  //<Esc>yyp0llv$hhhr-yykPjj
-autocmd FileType python,ruby,sh,zsh map <leader>ccb I#  <Esc>A  #<Esc>yyp0lv$hhr-yykPjj
-autocmd FileType css map <leader>ccb I/*  <Esc>A  */<Esc>yyp0llv$r-$hc$*/<Esc>b
-
-map <C-L> I"<Del>  <Esc>A  "<Del><Esc>yyp0lv$hhr"yykPjj
 
 " R
 nnoremap <C-S-B> :!Rscript -e "devtools::build(); devtools::install();" <CR>
