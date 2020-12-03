@@ -21,3 +21,5 @@ alias nvimconfig='nvim ~/.config/nvim/init.vim'
 alias R361='/opt/bee_tools/R/3.6.1/lib64/R/bin/R'
 alias lastp="lpass show -c --password \$(lpass ls  | fzf | awk \'{print \$(NF)}\' | sed \'s/\]//g\')"
 alias nvim="nvim -c 'hi! Cursor ctermfg=1 ctermbg=1 guifg=#FF0000 guibg=#FF0000'"
+alias proj_uc22="tmux attach -t uc22"
+alias proj_cit_extension="tmux attach -t cit_extension_project"
