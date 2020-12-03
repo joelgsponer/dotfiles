@@ -1,9 +1,9 @@
-""""""""""""""""""""""
 """Nvim config file"""
 """"""""""""""""""""""
 nnoremap <SPACE> <Nop>
 let g:mapleader = " "
 " PLUGINS
+""""""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -24,7 +24,10 @@ call plug#end()
 " Plugin keymappings
 "" fzf
 map . :Files <CR>
+map <Leader>. :vsp <bar> :Files <CR>
 map , :Buffers <CR>
+map <Leader>, :vsp <bar> :Buffers <CR>
+
 "" EasyMotion
 """ <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -180,20 +183,14 @@ vnoremap <Down> :m '>+1<CR>gv=gv
 " Arrows
 nnoremap <Up> :m .-2<CR>==
 nnoremap <Down> :m .+<CR>==
-inoremap <Up> <Esc>:m .-2<CR>==gi
-inoremap <Down> <Esc>:m .+1<CR>==gi
 vnoremap <Up> :m '<-2<CR>gv=gv
 vnoremap <Down> :m '>+1<CR>gv=gv
 nnoremap <S-Up> :m .-5<CR>==
 nnoremap <S-Down> :m .+5<CR>==
-inoremap <S-Up> <Esc>:m .-6<CR>==gi
 vnoremap <S-Down> :m '>+5<CR>gv=gv
-inoremap <S-Down> <Esc>:m .+5<CR>==gi
-vnoremap <S-Up> :m '<-6<CR>gv=gv
+vnoremap <S-Up> :m '<-6<CR>gv=gv:wq
 nnoremap <Left> <<
-inoremap <Left> <<
 nnoremap <Right> >>
-inoremap <Right> >>
 
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
