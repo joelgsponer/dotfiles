@@ -181,16 +181,6 @@ inoremap <Down> <Esc>:m .+1<CR>==gi
 vnoremap <Up> :m '<-2<CR>gv=gv
 vnoremap <Down> :m '>+1<CR>gv=gv
 " Arrows
-nnoremap <Up> :m .-2<CR>==
-nnoremap <Down> :m .+<CR>==
-vnoremap <Up> :m '<-2<CR>gv=gv
-vnoremap <Down> :m '>+1<CR>gv=gv
-nnoremap <S-Up> :m .-5<CR>==
-nnoremap <S-Down> :m .+5<CR>==
-vnoremap <S-Down> :m '>+5<CR>gv=gv
-vnoremap <S-Up> :m '<-6<CR>gv=gv:wq
-nnoremap <Left> <<
-nnoremap <Right> >>
 
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
