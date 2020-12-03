@@ -151,14 +151,16 @@ nnoremap kj <esc>
 cnoremap kj <esc>
 vnoremap kj <esc>
 inoremap kj <esc>
-xnoremap kj <esc>
 tnoremap kj <C-\><C-n>
+xnoremap kj <esc>
+nnoremap `` <esc>
+inoremap `` <esc>
+cnoremap `` <esc>
+vnoremap `` <esc>
+xnoremap `` <esc>
+inoremap ``  <esc>
 tnoremap <Esc> <C-\><C-n>
-" Arrow keys
-inoremap <Down> <Down><ESC>
-inoremap <Up> <Up><ESC>
-inoremap <Left> <Left><ESC>
-inoremap <Right> <Right><ESC>
+" Select completion
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Line moving
@@ -169,11 +171,29 @@ inoremap ˚ <Esc>:m .-2<CR>==gi
 inoremap ∆ <Esc>:m .+1<CR>==gi
 vnoremap ˚ :m '<-2<CR>gv=gv
 vnoremap ∆ :m '>+1<CR>gv=gv
-" Resizing
-nnoremap <A-Up> :m .-2<CR>==
-nnoremap <A-Down> :m .+<CR>==
-nnoremap <A-Left> <<
-nnoremap <A-Right> >>
+nnoremap <Up> :m .-2<CR>==
+nnoremap <Down> :m .+<CR>==
+inoremap <Up> <Esc>:m .-2<CR>==gi
+inoremap <Down> <Esc>:m .+1<CR>==gi
+vnoremap <Up> :m '<-2<CR>gv=gv
+vnoremap <Down> :m '>+1<CR>gv=gv
+" Arrows
+nnoremap <Up> :m .-2<CR>==
+nnoremap <Down> :m .+<CR>==
+inoremap <Up> <Esc>:m .-2<CR>==gi
+inoremap <Down> <Esc>:m .+1<CR>==gi
+vnoremap <Up> :m '<-2<CR>gv=gv
+vnoremap <Down> :m '>+1<CR>gv=gv
+nnoremap <S-Up> :m .-5<CR>==
+nnoremap <S-Down> :m .+5<CR>==
+inoremap <S-Up> <Esc>:m .-6<CR>==gi
+vnoremap <S-Down> :m '>+5<CR>gv=gv
+inoremap <S-Down> <Esc>:m .+5<CR>==gi
+vnoremap <S-Up> :m '<-6<CR>gv=gv
+nnoremap <Left> <<
+inoremap <Left> <<
+nnoremap <Right> >>
+inoremap <Right> >>
 
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
