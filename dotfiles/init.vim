@@ -174,12 +174,6 @@ inoremap ˚ <Esc>:m .-2<CR>==gi
 inoremap ∆ <Esc>:m .+1<CR>==gi
 vnoremap ˚ :m '<-2<CR>gv=gv
 vnoremap ∆ :m '>+1<CR>gv=gv
-nnoremap <Up> :m .-2<CR>==
-nnoremap <Down> :m .+<CR>==
-inoremap <Up> <Esc>:m .-2<CR>==gi
-inoremap <Down> <Esc>:m .+1<CR>==gi
-vnoremap <Up> :m '<-2<CR>gv=gv
-vnoremap <Down> :m '>+1<CR>gv=gv
 " Arrows
 
 " Activate spell checker
