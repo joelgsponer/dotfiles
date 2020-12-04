@@ -43,7 +43,7 @@ c() {
 cp -f "/Users/federerj/Library/ApplicationSupport/Google/Chrome/Profile 1/History" /tmp/h
 
   sqlite3 -separator $sep /tmp/h \
-    "select substr(title, 1, $cols), url
+  "select substr(title, 1, $cols), url
      from urls order by last_visit_time desc" |
   awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
@@ -100,4 +100,11 @@ ftpane() {
 
 # In tmux.conf
 # bind-key 0 run "tmux split-window -l 12 'bash -ci ftpane'"
-
+# fbr - checkout git branch (including remote branches)
+fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
