@@ -43,20 +43,20 @@ font:
   # The normal (roman) font face to use.
   # Style can be specified to pick a specific face.
   normal:
-    family: Hack
+    family: "Source Code Pro Light"
     # family: "Fira Code"
     # family: "Source Code Pro"
     # style: Retina
 
   # The bold font face
   bold:
-    family: Hack
+    family: "Source Code Pro Bold"
     # family: "Fira Code"
     # family: "Source Code Pro"
 
   # The italic font face
   italic:
-    family: Hack
+    family: "Source Code Pro Italic"
     # family: "Fira Code"
     # family: "Source Code Pro"
     # style: "Medium Italic"

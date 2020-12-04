@@ -209,8 +209,22 @@ nnoremap <C-S-B> :!Rscript -e "devtools::build(); devtools::install();" <CR>
 function CorrectColorScheme()
   highlight SignColumn guibg=black
   hi Normal guibg=#0a0909
-  hi Cursor ctermfg=1 ctermbg=1 guibg=#750f00
-  highlight CursorLine guibg=#000000
+  hi Cursor ctermfg=1 ctermbg=1 guibg=#00ff21
+  highlight CursorLine guibg=#300200
+  highlight StatusLine guibg=darkgreen
 endfunction
+
+function StyleInsert()
+  highlight StatusLine guibg=darkred
+  highlight CursorLine guibg=#300200
+  hi Cursor ctermfg=1 ctermbg=1 guibg=#fc0c00
+  hi Normal guibg=#050000
+endfunction
+  
+
+
 autocmd VimEnter * call CorrectColorScheme()
+
+autocmd InsertEnter * call StyleInsert() 
+autocmd InsertLeave * call CorrectColorScheme()
 
