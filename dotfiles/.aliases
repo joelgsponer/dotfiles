@@ -15,11 +15,12 @@ alias warrior="cd ~/dev/waRRior"
 alias srczsh='source ~/.zshrc'
 alias aos='cd ~/dev/AceOfSpades'
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
-alias bee='ssh federerj@rbaub000162.bas.roche.com'
+alias bee='ssh -v -X federerj@rbaub000162.bas.roche.com'
 alias beetunnel='ssh -N -L 2342:localhost:2342 federerj@rbaub000162.bas.roche.com'  
 alias nvimconfig='nvim ~/.config/nvim/init.vim'
 alias R361='/opt/bee_tools/R/3.6.1/lib64/R/bin/R'
 alias lastp="lpass show -c --password \$(lpass ls  | fzf | awk \'{print \$(NF)}\' | sed \'s/\]//g\')"
-alias nvim="nvim -c 'hi! Cursor ctermfg=1 ctermbg=1 guifg=#FF0000 guibg=#FF0000'"
+#alias nvim="nvim -c 'hi! Cursor ctermfg=1 ctermbg=1 guifg=#FF0000 guibg=#FF0000'"
+alias zshconfig="nvim ~/.zshrc" 
 alias proj_uc22="tmux attach -t uc22"
 alias proj_cit_extension="tmux attach -t cit_extension_project"

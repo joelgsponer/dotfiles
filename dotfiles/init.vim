@@ -93,6 +93,12 @@ set expandtab               " converts tabs to white space
 set shiftwidth=2            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
+set number relativenumber
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
 set nowrap
 set cursorline
 set clipboard=unnamed
@@ -176,6 +182,11 @@ inoremap ∆ <Esc>:m .+1<CR>==gi
 vnoremap ˚ :m '<-2<CR>gv=gv
 vnoremap ∆ :m '>+1<CR>gv=gv
 " Arrows
+inoremap <Down> <ESC><Down>
+inoremap <Up> <ESC><UP>
+inoremap <Left> <ESC><Left>
+inoremap <Right> <ESC><Right>
+inoremap <LeftMouse> <LeftMouse><Esc>
 
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
