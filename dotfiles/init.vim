@@ -20,14 +20,16 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'rakr/vim-one'
+Plug 'jpalardy/vim-slime'
+Plug 'fcpg/vim-osc52'
 call plug#end()
 
 " Plugin keymappings
 "" fzf
-map . :Files <CR>
-map <Leader>. :vsp <bar> :Files <CR>
-map , :Buffers <CR>
-map <Leader>, :vsp <bar> :Buffers <CR>
+map ; :tabnew <CR> :Files <CR>
+map <Leader>; :vsp <bar> :Files <CR>
+map <S-;> :tabnew <CR> :Buffers <CR>
+map <S-;> :vsp <bar> :Buffers <CR>
 
 "" EasyMotion
 """ <Leader>f{char} to move to {char}
@@ -80,6 +82,7 @@ let g:neoterm_default_mod='botright'
 set background=dark
 colorscheme one
 
+let g:slime_target = "tmux"
 
 " Settings
 let NERDTreeShowHidden=1
@@ -110,6 +113,11 @@ set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 
 """""""""""""""""""""""
 " Key mapping
+" Copy and pasting
+vmap <C-c> "*y 
+nnoremap <C-S-v> "*p
+vnoremap <C-S-v> "*p
+" General
 nnoremap <CR> o<Esc>
 nnoremap R ciw
 nnoremap <C-r> <Esc>:source $MYVIMRC<CR>
@@ -133,7 +141,7 @@ nnoremap <C-s> <Esc>:w<CR>
 inoremap <C-s> <Esc>:w<CR>
 vnoremap <C-s> <Esc>:w<CR>
 " Quitting
-nnoremap <C-q> <Esc>:q!<CR>
+nnoremap <C-q> :q!<CR>
 inoremap <C-q> <Esc>:q!<CR>
 xnoremap <C-q> <Esc>:q!<CR>
 vnoremap <C-q> <Esc>:q!<CR>
@@ -143,9 +151,9 @@ nnoremap d "_d
 nnoremap m d
 " Window navigation
 nnoremap <C-J> <C-W><C-J>
+nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
-nnoremap <C-J> <C-W><C-J>
 tnoremap <C-K> <C-W><C-K>
 tnoremap <C-L> <C-W><C-L>
 tnoremap <C-H> <C-W><C-H>
@@ -177,6 +185,13 @@ vnoremap ˚ :m '<-2<CR>gv=gv
 vnoremap ∆ :m '>+1<CR>gv=gv
 " Arrows
 
+
+" Macro type command
+" Spread on new line after comma
+nnoremap <Leader>m, f,a<CR><ESC>
+nnoremap <Leader>m. f(a<CR><ESC>k%i<CR><C-d><ESC>v%j 
+
+
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
 " Add date
@@ -186,20 +201,27 @@ inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>
 nnoremap <C-p> :bp<CR>
 nnoremap <C-o> :bn<CR>
 
-" R
-nnoremap <C-CR> :TREPLSendFile<CR>
+" Raa
+function StartRFromPath(path)
+    let g:R_path = a:path
+    call StartR("R")
+endfunction
+
+command R363 :call StartRFromPath('/opt/bee_tools/R/3.6.3/bin')<CR>
+command R361 :call StartRFromPath('/opt/bee_tools/R/3.6.1/bin')<CR>
+
 map <F2> <Plug>RStart 
 imap <F2> <Plug>RStart
 vmap <F2> <Plug>RStart
-vmap <Space> <Plug>RDSendSelection
-nmap <Space> <Plug>RDSendLine
-nmap <Space><Space> <Plug>RDSendLine
+vmap <Space><CR> <Plug>RDSendSelection
+nmap <Space><CR> <Plug>RDSendLine
 let R_assign = 0
 let R_app = "radian"
 let R_cmd = "R"
 let R_hl_term = 0
 let R_args = []  " if you had set any
 let R_bracketed_paste = 1
+let R_csv_app = 'terminal:vd'
 
 " R
 nnoremap <C-S-B> :!Rscript -e "devtools::build(); devtools::install();" <CR>
@@ -213,6 +235,7 @@ function CorrectColorScheme()
   hi Cursor ctermfg=1 ctermbg=1 guibg=#00ff21
   highlight CursorLine guibg=#300200
   highlight StatusLine guibg=darkgreen
+  hi VertSplit guibg=darkgreen guifg=darkgreen
 endfunction
 
 function StyleInsert()
@@ -220,6 +243,7 @@ function StyleInsert()
   highlight CursorLine guibg=#300200
   hi Cursor ctermfg=1 ctermbg=1 guibg=#fc0c00
   hi Normal guibg=#050000
+  hi VertSplit guibg=darkred guifg=darkred
 endfunction
   
 
@@ -323,13 +347,22 @@ set laststatus=2
 set statusline=
 set statusline+=%{ChangeStatuslineColor()}               " Changing the statusline color
 set statusline+=%0*\ %{toupper(g:currentmode[mode()])}   " Current mode
-set statusline+=%8*\ [%n]                                " buffernr
-set statusline+=%8*\ %{GitInfo()}                        " Git Branch name
-set statusline+=%8*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
+set statusline+=%0*\ [%n]                                " buffernr
+set statusline+=%0*\ %{GitInfo()}                        " Git Branch name
+set statusline+=%0*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
 set statusline+=%#warningmsg#
 set statusline+=%*
-set statusline+=%9*\ %=                                  " Space
+set statusline+=%0*\ %=                                  " Space
 set statusline+=%8*\ %y\                                 " FileType
 set statusline+=%7*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
 set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
 set statusline+=%0*\ %3p%%\ \ %l:\ %3c\                 " Rownumber/total (%)
+
+
+hi VertSplit guibg=darkgreen guifg=darkgreen
+hi Split guibg=magenta guifg=magenta
+highlight SignColumn guibg=black
+hi Normal guibg=#0a0909
+hi Cursor ctermfg=1 ctermbg=1 guibg=#00ff21
+highlight CursorLine guibg=#300200
+highlight StatusLine guibg=darkgreen

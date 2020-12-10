@@ -1,4 +1,5 @@
 # fkill - kill processes - list only the ones you can kill. Modified the earlier script.
+
 fkill() {
     local pid 
     if [ "$UID" != "0" ]; then
@@ -59,7 +60,7 @@ tm() {
 
 
 # zsh; needs setopt re_match_pcre. You can, of course, adapt it to your own shell easily.
-tmuxkillf () {
+tmkill() {
     local sessions
     sessions="$(tmux ls|fzf --exit-0 --multi)"  || return $?
     local i
