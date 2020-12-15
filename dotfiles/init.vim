@@ -30,7 +30,7 @@ map ; :tabnew <CR> :Files <CR>
 map <Leader>; :vsp <bar> :Files <CR>
 map <S-;> :tabnew <CR> :Buffers <CR>
 map <S-;> :vsp <bar> :Buffers <CR>
-
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 "" EasyMotion
 """ <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -120,6 +120,7 @@ set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 """""""""""""""""""""""
 " Key mapping
 " Copy and pasting
+nnoremap <c-a> <c-v>
 vmap <C-c> "*y 
 nnoremap <C-S-v> "*p
 vnoremap <C-S-v> "*p
@@ -274,7 +275,7 @@ let g:currentmode={
       \ 'V'  : 'V·Line ',
       \ '' : 'V·Block ',
       \ 's'  : 'Select ',
-      \ 'S'  : 'S·Line ',
+    \ 'S'  : 'S·Line ',
       \ '' : 'S·Block ',
       \ 'i'  : 'I ',
       \ 'R'  : 'R ',
