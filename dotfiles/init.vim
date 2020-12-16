@@ -2,6 +2,7 @@
 """"""""""""""""""""""
 nnoremap <SPACE> <Nop>
 let g:mapleader = " "
+let g:localmapleader = "\\"
 " PLUGINS
 """"""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
@@ -236,9 +237,6 @@ let R_bracketed_paste = 1
 let R_csv_app = 'terminal:vd'
 
 " R
-nnoremap <C-S-B> :!Rscript -e "devtools::build(); devtools::install();" <CR>
-
-" ---
 " Post Load Fixes
 " ---
 function CorrectColorScheme()
