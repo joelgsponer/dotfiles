@@ -202,7 +202,7 @@ inoremap <LeftMouse> <LeftMouse><Esc>
 " Spread on new line after comma
 nnoremap <Leader>m, f,a<CR><ESC>
 nnoremap <Leader>m. f(a<CR><ESC>k%i<CR><C-d><ESC>v%j 
-
+command MSepComma f,a<CR><ESC>
 
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
