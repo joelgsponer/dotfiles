@@ -202,7 +202,8 @@ inoremap <LeftMouse> <LeftMouse><Esc>
 " Spread on new line after comma
 nnoremap <Leader>m, f,a<CR><ESC>
 nnoremap <Leader>m. f(a<CR><ESC>k%i<CR><C-d><ESC>v%j 
-command MSepComma f,a<CR><ESC>
+command MReflowArguments :normal i <CR> f(a<CR><ESC>k%i<CR><C-d><ESC>:le v%j 
+command MSepComma :normal i <CR> f,a<CR><ESC>
 
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
@@ -236,7 +237,7 @@ let R_bracketed_paste = 1
 let R_csv_app = 'terminal:vd'
 
 " R
-nnoremap <C-S-B> :!Rscript -e "devtools::build(); devtools::install();" <CR>
+command RBuildInstall :!Rscript -e "devtools::build(); devtools::install();" <CR>
 
 " ---
 " Post Load Fixes
