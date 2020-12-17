@@ -2,6 +2,7 @@
 """"""""""""""""""""""
 nnoremap <SPACE> <Nop>
 let g:mapleader = " "
+let g:localmapleader = "\\"
 " PLUGINS
 """"""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
@@ -228,6 +229,12 @@ imap <F2> <Plug>RStart
 vmap <F2> <Plug>RStart
 vmap <Space><CR> <Plug>RDSendSelection
 nmap <Space><CR> <Plug>RDSendLine
+" Ensures usage of your own ~/.tmux.conf file
+let R_notmuxconf = 1
+" Shows function arguments in a separate viewport during omni completion with Ctrl-x Ctrl-o:w
+let R_show_args = 1
+" Use Ctrl-Space to do omnicompletion
+inoremap <C-Space> <C-x><C-o>
 let R_assign = 0
 let R_app = "radian"
 let R_cmd = "R"
@@ -238,8 +245,6 @@ let R_csv_app = 'terminal:vd'
 
 " R
 command RBuildInstall :!Rscript -e "devtools::build(); devtools::install();" <CR>
-
-" ---
 " Post Load Fixes
 " ---
 function CorrectColorScheme()
