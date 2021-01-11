@@ -154,9 +154,6 @@ inoremap <C-q> <Esc>:q!<CR>
 xnoremap <C-q> <Esc>:q!<CR>
 vnoremap <C-q> <Esc>:q!<CR>
 "command W w!sudo tee % > /dev/null " Write write protected files
-" Copy and pasting
-nnoremap d "_d
-nnoremap m d
 " Window navigation
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-J> <C-W><C-J>
@@ -366,6 +363,7 @@ set statusline=
 set statusline+=%{ChangeStatuslineColor()}               " Changing the statusline color
 set statusline+=%0*\ %{toupper(g:currentmode[mode()])}   " Current mode
 set statusline+=%0*\ [%n]                                " buffernr
+set statusline+=%0*\ %3p%%\ \ %l:\ %3c\                 " Rownumber/total (%)
 set statusline+=%0*\ %{GitInfo()}                        " Git Branch name
 set statusline+=%0*\ %<%F\ %{ReadOnly()}\ %m\ %w\        " File+path
 set statusline+=%#warningmsg#
@@ -374,7 +372,6 @@ set statusline+=%0*\ %=                                  " Space
 set statusline+=%8*\ %y\                                 " FileType
 set statusline+=%7*\ %{(&fenc!=''?&fenc:&enc)}\[%{&ff}]\ " Encoding & Fileformat
 set statusline+=%8*\ %-3(%{FileSize()}%)                 " File size
-set statusline+=%0*\ %3p%%\ \ %l:\ %3c\                 " Rownumber/total (%)
 
 
 hi VertSplit guibg=darkgreen guifg=darkgreen

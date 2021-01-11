@@ -1,28 +1,22 @@
 #! bin/bash
 echo "Adding aliases"
-alias shiny_logs="cd /var/log/shiny-server/3.6.1/users/"
-alias shiny_server="cd /srv/shiny-server/3.6.1/users/federerj/"
-alias runTests="/opt/bee_tools/R/3.6.1/lib64/R/bin/Rscript -e 'runTests()'"
-alias ratom="~/bin/ratom"
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
-alias govim='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://vim.rtorr.com/"'
-alias rsrv='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://r.roche.com/s/57ea13c286bd33c286bd3/workspaces/"'
-alias ssrv='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://shiny.roche.com/3.5.3/users/federerj/"'
-alias gogit='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --app="https://github.roche.com/federerj?tab=repositories/"'
-alias gt="sh ~/dotfiles/dotfiles/.scripts/generate_template.sh"
-alias warrior="cd ~/dev/waRRior"
-alias srczsh='source ~/.zshrc'
-alias aos='cd ~/dev/AceOfSpades'
+# Apps 
 alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias r="radian"
+alias lastp="lpass show -c --password \$(lpass ls  | fzf | awk \'{print \$(NF)}\' | sed \'s/\]//g\')"
+# BEE
 alias bee='ssh -v -X federerj@rbaub000162.bas.roche.com'
 alias beetunnel='ssh -N -L 2342:localhost:2342 federerj@rbaub000162.bas.roche.com'  
-alias nvimconfig='nvim ~/.config/nvim/init.vim'
-alias r="radian"
-alias R361='/opt/bee_tools/R/3.6.1/lib64/R/bin/R'
+alias logs361="cd /var/log/shiny-server/3.6.1/users/"
+alias logs363="cd /var/log/shiny-server/3.6.3/users/"
+alias server361="cd /srv/shiny-server/3.6.1/users/federerj/"
+alias server363="cd /srv/shiny-server/3.6.3/users/federerj/"
 alias r361='radian --r-binary=/opt/bee_tools/R/3.6.1/lib64/R/bin/R'
-alias lastp="lpass show -c --password \$(lpass ls  | fzf | awk \'{print \$(NF)}\' | sed \'s/\]//g\')"
-#alias nvim="nvim -c 'hi! Cursor ctermfg=1 ctermbg=1 guifg=#FF0000 guibg=#FF0000'"
+alias R361='/opt/bee_tools/R/3.6.1/lib64/R/bin/R'
+# Project folders
+alias warrior="cd ~/dev/waRRior"
+alias aos='cd ~/dev/AceOfSpades'
+alias uc22='cd ~/dev/uc22_app_dev'
+# Edit config files
+alias nvimconfig='nvim ~/.config/nvim/init.vim'
 alias zshconfig="nvim ~/.zshrc" 
-alias proj_uc22="tmux attach -t uc22"
-alias proj_cit_extension="tmux attach -t cit_extension_project"
