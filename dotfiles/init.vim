@@ -120,8 +120,8 @@ set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 " Copy and pasting
 nnoremap <c-a> <c-v>
 vmap <C-c> "*y 
-nnoremap <C-S-v> "*p
-vnoremap <C-S-v> "*p
+nnoremap <C-S-v> "0p
+vnoremap <C-S-v> "0p
 " General
 nnoremap <CR> o<Esc>
 nnoremap R ciw
@@ -192,8 +192,8 @@ inoremap <Left> <ESC><Left>
 inoremap <Right> <ESC><Right>
 inoremap <LeftMouse> <LeftMouse><Esc>
 " Mmakrs
-nnoremap <C-m> :marks<CR>
-inoremap <C-m> <Esc>:marks<CR>
+nnoremap <S-m> :marks<CR>
+inoremap <S-m> <Esc>:marks<CR>
 
 " Macro type command
 " Spread on new line after comma
@@ -378,3 +378,4 @@ hi Normal guibg=#0a0909
 hi Cursor ctermfg=1 ctermbg=1 guibg=#00ff21
 highlight CursorLine guibg=#300200
 highlight StatusLine guibg=darkgreen
+
