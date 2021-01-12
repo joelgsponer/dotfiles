@@ -27,10 +27,8 @@ call plug#end()
 
 " Plugin keymappings
 "" fzf
-"map ; :tabnew <CR> :Files <CR>
-"map <Leader>; :vsp <bar> :Files <CR>
-map <S-;> :tabnew <CR> :Buffers <CR>
-map <S-;> :vsp <bar> :Buffers <CR>
+map ; :Files <CR>
+map <C-;> :Buffers <CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
 "" EasyMotion
 """ <Leader>f{char} to move to {char}
@@ -191,9 +189,6 @@ inoremap <Up> <ESC><UP>
 inoremap <Left> <ESC><Left>
 inoremap <Right> <ESC><Right>
 inoremap <LeftMouse> <LeftMouse><Esc>
-" Mmakrs
-nnoremap <S-m> :marks<CR>
-inoremap <S-m> <Esc>:marks<CR>
 
 " Macro type command
 " Spread on new line after comma
