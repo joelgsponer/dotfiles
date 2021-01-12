@@ -12,23 +12,23 @@ Plug 'junegunn/fzf.vim'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sheerun/vim-polyglot'
+"Plug 'sheerun/vim-polyglot'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'easymotion/vim-easymotion'
-Plug 'tpope/vim-surround'
+"Plug 'tpope/vim-surround'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'rakr/vim-one'
-Plug 'jpalardy/vim-slime'
-Plug 'fcpg/vim-osc52'
+"Plug 'jpalardy/vim-slime'
+"Plug 'fcpg/vim-osc52'
 call plug#end()
 
 " Plugin keymappings
 "" fzf
-map ; :tabnew <CR> :Files <CR>
-map <Leader>; :vsp <bar> :Files <CR>
+"map ; :tabnew <CR> :Files <CR>
+"map <Leader>; :vsp <bar> :Files <CR>
 map <S-;> :tabnew <CR> :Buffers <CR>
 map <S-;> :vsp <bar> :Buffers <CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
@@ -74,7 +74,6 @@ vnoremap <C-f> <Esc> /
 xnoremap <C-f> <Esc> /
 
 map <C-n> :NERDTreeToggle<CR>
-nnoremap <silent> <space>y  :<C-u>CocList -A --normal yank<cr>
 let g:neoterm_term_per_tab=1
 let g:neoterm_autoinsert=1
 let g:neoterm_shell='/bin/bash'
@@ -82,8 +81,6 @@ let g:neoterm_default_mod='botright'
 "
 set background=dark
 colorscheme one
-
-let g:slime_target = "tmux"
 
 " Settings
 let NERDTreeShowHidden=1
@@ -99,9 +96,9 @@ set autoindent              " indent a new line the same amount as the line just
 set number                  " add line numbers
 set number relativenumber
 augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+autocmd!
+autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 set nowrap
 set cursorline
@@ -194,7 +191,9 @@ inoremap <Up> <ESC><UP>
 inoremap <Left> <ESC><Left>
 inoremap <Right> <ESC><Right>
 inoremap <LeftMouse> <LeftMouse><Esc>
-
+" Mmakrs
+nnoremap <C-m> :marks<CR>
+inoremap <C-m> <Esc>:marks<CR>
 
 " Macro type command
 " Spread on new line after comma
@@ -264,7 +263,6 @@ endfunction
 
 
 autocmd VimEnter * call CorrectColorScheme()
-
 autocmd InsertEnter * call StyleInsert() 
 autocmd  * call StyleInsert() 
 autocmd InsertLeave * call CorrectColorScheme()
@@ -314,7 +312,6 @@ function! ChangeStatuslineColor()
   else
     exe 'hi! StatusLine ctermfg=006 guifg=orange gui=None cterm=None'
   endif
-
   return ''
 endfunction
 

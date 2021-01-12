@@ -18,10 +18,15 @@ alias warrior="cd ~/dev/waRRior"
 alias aos='cd ~/dev/AceOfSpades'
 alias uc22='cd ~/dev/uc22_app_dev'
 # Edit config files
-alias bashconfig="nvim ~/.bashrc" 
-alias zshconfig="nvim ~/.zshrc" 
-alias nvimconfig='nvim ~/.config/nvim/init.vim'
+alias editbash="nvim ~/.bashrc" 
+alias editzsh="nvim ~/.zshrc" 
+alias editnvim='nvim ~/.config/nvim/init.vim'
+alias editaliases="nvim ~/.aliases"
 # Source files
 alias srcbash='source ~/.bashrc'
 alias srczsh='source ~/.zshrc'
 alias srcnvim='source ~/.config/nvim/init.vim'
+alias srcaliases='source ~/.aliasesrc'
+# Dotfiles
+alias save_dotfiles="~/dotfiles/quickfix.sh"
+
