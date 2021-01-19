@@ -116,9 +116,6 @@ source ~/.aliases
 # Starship
 eval "$(starship init zsh)"
 
-# Colorls
-source $(dirname $(gem which colorls))/tab_complete.sh
-
 # Custom functions
 # Show contents of the directory after changing to it
 #function cd () {
