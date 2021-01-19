@@ -136,9 +136,9 @@ nnoremap <C-[> <<
 vnoremap <C-]> >gv
 vnoremap <C-[> <gv
 " Brackets
-"inoremap { {}<ESC>ha
-"inoremap ( ()<ESC>ha
-"inoremap [ []<ESC>ha
+inoremap () ()<ESC>i
+inoremap {} {}<ESC>i
+inoremap [] []<ESC>i
 " Saving
 nnoremap <C-s> <Esc>:w<CR>
 inoremap <C-s> <Esc>:w<CR>
