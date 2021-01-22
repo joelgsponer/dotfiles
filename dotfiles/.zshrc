@@ -1,3 +1,6 @@
+# Start a TMUX session if not already running
+if [ "$TMUX" = "" ]; then tmux attach -t base || tmux new -s base; fi
+#
 # Autocomplete for Home-brew
 if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
@@ -111,7 +114,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.aliases
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
 
 # Starship
 eval "$(starship init zsh)"
@@ -149,3 +152,4 @@ source ~/dotfiles/scripts/fzf.sh
 
 
 eval $(thefuck --alias)
+

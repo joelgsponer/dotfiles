@@ -1,8 +1,5 @@
 """Nvim config file"""
 """"""""""""""""""""""
-nnoremap <SPACE> <Nop>
-let g:mapleader = " "
-let g:localmapleader = "\\"
 " PLUGINS
 """"""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
@@ -25,13 +22,32 @@ Plug 'rakr/vim-one'
 "Plug 'fcpg/vim-osc52'
 call plug#end()
 
-" Plugin keymappings
+"x Plugin keymappings
 "" fzf
-map ; :Files <CR>
-map <C-;> :Buffers <CR>
+nnoremap ; :Buffers <CR>
+nnoremap ;; :Files <CR>
+nnoremap ;;; :Rg <CR>
+nnoremap <Space><Space> :BLines <CR>
+nnoremap <Space><SPACE><SPACE> :Lines <CR>
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+function! s:paste_rhistory(cmd)
+	" has to be a function to avoid the extra space fzf#run insers otherwise
+  let @z = a:cmd
+	" execute feedkeys('<C-c> i')  
+  execute feedkeys('"zp')
+	execute feedkeys('i')  
+endfunction(cmd)
+
+command! -nargs=* FZFRhistory call fzf#run({
+			\   'source': 'grep \+ ~/.radian_history | sed -e "s/+//g"',
+      \   'window': { 'width': 0.9, 'height': 0.6 },
+      \   'sink': function('<sid>paste_rhistory')
+			\ })
+tnoremap <C-UP> <C-\><C-n> :FZFRhistory<CR>
+
 "" EasyMotion
-""" <Leader>f{char} to move to {char}
+""" <ceader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 
@@ -45,7 +61,6 @@ nmap <Leader>l <Plug>(easymotion-overwin-line)
 """ Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
-
 " You can use other keymappings like <C-l> instead of <CR> if you want to
 " use these mappings as default search and sometimes want to move cursor with
 " EasyMotion.
@@ -65,6 +80,7 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
 noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+
 noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
 nnoremap <C-f> <Esc> /
 inoremap <C-f> <Esc> /
@@ -84,6 +100,7 @@ colorscheme one
 let NERDTreeShowHidden=1
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
+set showcmd
 set ignorecase              " case insensitive matching
 set mouse=a                 
 set tabstop=2               " number of columns occupied by a tab character
@@ -92,7 +109,7 @@ set expandtab               " converts tabs to white space
 set shiftwidth=2            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
-set number relativenumber
+"set number relativenumber
 augroup numbertoggle
 autocmd!
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
@@ -118,7 +135,7 @@ set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 " Copy and pasting
 nnoremap <c-a> <c-v>
 vmap <C-c> "*y 
-nnoremap <C-S-v> "0p
+noremap <C-S-v> "0p
 vnoremap <C-S-v> "0p
 " General
 nnoremap <CR> o<Esc>
@@ -158,13 +175,28 @@ tnoremap <C-K> <C-W><C-K>
 tnoremap <C-L> <C-W><C-L>
 tnoremap <C-H> <C-W><C-H>
 tnoremap <C-H> <C-W><C-H>
+" Tab navigation
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<CR>
+nnoremap tm  :tabm<CR>
+nnoremap tn  :tabnew<CR>
+nnoremap td  :tabclose<CR>
 " esc in insert mode
+nnoremap kj <esc>
 nnoremap kj <esc>
 cnoremap kj <esc>
 vnoremap kj <esc>
 inoremap kj <esc>
 tnoremap kj <C-\><C-n>
-xnoremap kj <esc>
+xnoremap jh <esc>
+cnoremap jh <esc>
+vnoremap jh <esc>
+inoremap jh <esc>
+tnoremap jh <C-\><C-n>
+xnoremap jh <esc>
 nnoremap `` <esc>
 inoremap `` <esc>
 cnoremap `` <esc>
@@ -194,14 +226,9 @@ inoremap <LeftMouse> <LeftMouse><Esc>
 " Spread on new line after comma
 nnoremap <Leader>m, f,a<CR><ESC>
 nnoremap <Leader>m. f(a<CR><ESC>k%i<CR><C-d><ESC>v%j 
-command MReflowArguments :normal i <CR> f(a<CR><ESC>k%i<CR><C-d><ESC>:le v%j 
-command MSepComma :normal i <CR> f,a<CR><ESC>
 
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
-" Add date
-inoremap <leader>d <C-R>=strftime("%Y-%m-%dT%H:%M")<CR>
-
 " Buffer navigation
 nnoremap <C-p> :bp<CR>
 nnoremap <C-o> :bn<CR>
@@ -212,17 +239,18 @@ function StartRFromPath(path)
     call StartR("R")
 endfunction
 
-command R363 :call StartRFromPath('/opt/bee_tools/R/3.6.3/bin')<CR>
-command R361 :call StartRFromPath('/opt/bee_tools/R/3.6.1/bin')<CR>
+command! R363 :call StartRFromPath('/opt/bee_tools/R/3.6.3/bin')<CR>
+command! R361 :call StartRFromPath('/opt/bee_tools/R/3.6.1/bin')<CR>
+command! R :call StartR("R") 
 
 map <F2> <Plug>RStart 
 imap <F2> <Plug>RStart
 vmap <F2> <Plug>RStart
-vmap <Space><CR> <Plug>RDSendSelection
-nmap <Space><CR> <Plug>RDSendLine
+vmap <C-Space> <Plug>RDSendSelection
+nmap <C-Space> <Plug>RDSendLine
 " Ensures usage of your own ~/.tmux.conf file
 let R_notmuxconf = 1
-" Shows function arguments in a separate viewport during omni completion with Ctrl-x Ctrl-o:w
+" Shows function arguments in a separate viewport during omni completion with Ctrl-x Ctrl-o:w i
 let R_show_args = 1
 " Use Ctrl-Space to do omnicompletion
 inoremap <C-Space> <C-x><C-o>
@@ -235,7 +263,7 @@ let R_bracketed_paste = 1
 let R_csv_app = 'terminal:vd'
 
 " R
-command RBuildInstall :!Rscript -e "devtools::build(); devtools::install();" <CR>
+command! RBuildInstall :!Rscript -e "devtools::build(); devtools::install();" <CR>
 " Post Load Fixes
 " ---
 function CorrectColorScheme()
