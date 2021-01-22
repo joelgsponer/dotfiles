@@ -142,9 +142,9 @@ nnoremap <CR> o<Esc>
 nnoremap R ciw
 nnoremap <C-r> <Esc>:source $MYVIMRC<CR>
 " Undo
-inoremap <C-z> <ESC>u
-nnoremap <C-z> <ESC>u
-vnoremap <C-z> <ESC>u
+"inoremap <C-z> <ESC>u
+"nnoremap <C-z> <ESC>u
+"vnoremap <C-z> <ESC>u
 " Indentation
 inoremap <C-]> <C-t>
 inoremap <C-[> <C-d>
@@ -165,16 +165,6 @@ nnoremap <C-q> :q!<CR>
 inoremap <C-q> <Esc>:q!<CR>
 xnoremap <C-q> <Esc>:q!<CR>
 vnoremap <C-q> <Esc>:q!<CR>
-"command W w!sudo tee % > /dev/null " Write write protected files
-" Window navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-tnoremap <C-K> <C-W><C-K>
-tnoremap <C-L> <C-W><C-L>
-tnoremap <C-H> <C-W><C-H>
-tnoremap <C-H> <C-W><C-H>
 " Tab navigation
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
@@ -216,8 +206,8 @@ inoremap ∆ <Esc>:m .+1<CR>==gi
 vnoremap ˚ :m '<-2<CR>gv=gv
 vnoremap ∆ :m '>+1<CR>gv=gv
 " Arrows
-inoremap <Down> <ESC><Down>
 inoremap <Up> <ESC><UP>
+inoremap <DOWN> <ESC><Down>
 inoremap <Left> <ESC><Left>
 inoremap <Right> <ESC><Right>
 inoremap <LeftMouse> <LeftMouse><Esc>
@@ -230,8 +220,6 @@ nnoremap <Leader>m. f(a<CR><ESC>k%i<CR><C-d><ESC>v%j
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
 " Buffer navigation
-nnoremap <C-p> :bp<CR>
-nnoremap <C-o> :bn<CR>
 
 " Raa
 function StartRFromPath(path)
@@ -246,8 +234,8 @@ command! R :call StartR("R")
 map <F2> <Plug>RStart 
 imap <F2> <Plug>RStart
 vmap <F2> <Plug>RStart
-vmap <C-Space> <Plug>RDSendSelection
-nmap <C-Space> <Plug>RDSendLine
+vmap <Space> <Plug>RDSendSelection
+nmap <Space> <Plug>RDSendLine
 " Ensures usage of your own ~/.tmux.conf file
 let R_notmuxconf = 1
 " Shows function arguments in a separate viewport during omni completion with Ctrl-x Ctrl-o:w i
