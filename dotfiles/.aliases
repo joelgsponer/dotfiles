@@ -22,6 +22,7 @@ alias editbash="nvim ~/.bashrc"
 alias editzsh="nvim ~/.zshrc" 
 alias editnvim='nvim ~/.config/nvim/init.vim'
 alias editaliases="nvim ~/.aliases"
+alias edittmux="nvim ~/.tmux.conf"
 # Source files
 alias srcbash='source ~/.bashrc'
 alias srczsh='source ~/.zshrc'

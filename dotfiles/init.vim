@@ -18,6 +18,7 @@ Plug 'haya14busa/incsearch-easymotion.vim'
 Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'rakr/vim-one'
+Plug 'christoomey/vim-tmux-navigator'
 "Plug 'jpalardy/vim-slime'
 "Plug 'fcpg/vim-osc52'
 call plug#end()
