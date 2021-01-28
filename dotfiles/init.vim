@@ -6,24 +6,27 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'sheerun/vim-polyglot'
-Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+"Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'easymotion/vim-easymotion'
 "Plug 'tpope/vim-surround'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'kassio/neoterm'
+"Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'rakr/vim-one'
 Plug 'christoomey/vim-tmux-navigator'
-"Plug 'jpalardy/vim-slime'
+Plug 'junegunn/vim-peekaboo'
+Plug 'jpalardy/vim-slime'
 "Plug 'fcpg/vim-osc52'
 call plug#end()
 
-"x Plugin keymappings
+" Plugin Setting
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+
 "" fzf
 nnoremap ; :Buffers <CR>
 nnoremap ;; :Files <CR>
@@ -112,13 +115,12 @@ set autoindent              " indent a new line the same amount as the line just
 set number                  " add line numbers
 "set number relativenumber
 augroup numbertoggle
-autocmd!
+"autocmd! -> depreceate?
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 set nowrap
 set cursorline
-set clipboard=unnamed
 set clipboard=unnamedplus
 set cc=80                  " set an 80 column border for good coding style
 set ignorecase
@@ -136,9 +138,13 @@ set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
 " Copy and pasting
 nnoremap <c-a> <c-v>
 vmap <C-c> "*y 
-noremap <C-S-v> "0p
-vnoremap <C-S-v> "0p
+noremap <C-v> "0p
+vnoremap <C-v> "0p
 " General
+nnoremap GG GVgg
+nnoremap <C-z> <ESC>u
+inoremap <C-z> <ESC>u
+vnoremap <C-z> <ESC>u
 nnoremap <CR> o<Esc>
 nnoremap R ciw
 nnoremap <C-r> <Esc>:source $MYVIMRC<CR>
@@ -235,8 +241,10 @@ command! R :call StartR("R")
 map <F2> <Plug>RStart 
 imap <F2> <Plug>RStart
 vmap <F2> <Plug>RStart
-vmap <Space> <Plug>RDSendSelection
-nmap <Space> <Plug>RDSendLine
+vmap <Space> <C-c><C-c>
+"<Plug>RDSendSelection
+nmap <Space> <C-c><C-c>
+"<Plug>RDSendLine
 " Ensures usage of your own ~/.tmux.conf file
 let R_notmuxconf = 1
 " Shows function arguments in a separate viewport during omni completion with Ctrl-x Ctrl-o:w i
@@ -391,3 +399,7 @@ hi Cursor ctermfg=1 ctermbg=1 guibg=#00ff21
 highlight CursorLine guibg=#300200
 highlight StatusLine guibg=darkgreen
 
+function! _EscapeText_r(text)
+  call system("cat > ~/.slime_r", a:text)
+  return ["source('~/.slime_r', echo = TRUE, max.deparse.length = 4095)\r"]
+endfunction

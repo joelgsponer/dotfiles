@@ -1,5 +1,5 @@
 # Start a TMUX session if not already running
-#if [ "$TMUX" = "" ]; then tmux attach -t base || tmux new -s base; fi
+if [ "$TMUX" = "" ]; then tmux attach -t base || tmux new -s base; fi
 #
 # Autocomplete for Home-brew
 if type brew &>/dev/null; then
@@ -84,7 +84,7 @@ ZSH_THEME="af-magic"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vi-mode)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
