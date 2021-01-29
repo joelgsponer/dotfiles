@@ -6,6 +6,13 @@
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
     }
-  }
+  }, 
+  "languageserver": {
+    "R": {
+        "command": "/usr/local/bin/R",
+        "args" : [ "--slave", "-e", "languageserver::run()"],
+        "filetypes" : ["r"]
+    }
+}
 }
 

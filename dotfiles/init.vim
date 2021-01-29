@@ -173,14 +173,14 @@ inoremap <C-q> <Esc>:q!<CR>
 xnoremap <C-q> <Esc>:q!<CR>
 vnoremap <C-q> <Esc>:q!<CR>
 " Tab navigation
-nnoremap th  :tabfirst<CR>
-nnoremap tk  :tabnext<CR>
-nnoremap tj  :tabprev<CR>
-nnoremap tl  :tablast<CR>
-nnoremap tt  :tabedit<CR>
-nnoremap tm  :tabm<CR>
-nnoremap tn  :tabnew<CR>
-nnoremap td  :tabclose<CR>
+"nnoremap th  :tabfirst<CR>
+"nnoremap tk  :tabnext<CR>
+"nnoremap tj  :tabprev<CR>
+"nnoremap tl  :tablast<CR>
+"nnoremap tt  :tabedit<CR>
+"nnoremap tm  :tabm<CR>
+"nnoremap tn  :tabnew<CR>
+"nnoremap td  :tabclose<CR>
 " esc in insert mode
 nnoremap kj <esc>
 nnoremap kj <esc>
