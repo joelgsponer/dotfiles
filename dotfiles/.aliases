@@ -14,7 +14,10 @@ alias server363="cd /srv/shiny-server/3.6.3/users/federerj/"
 alias r361='radian --r-binary=/opt/bee_tools/R/3.6.1/lib64/R/bin/R'
 alias R361='/opt/bee_tools/R/3.6.1/lib64/R/bin/R'
 # Project folders
-alias warrior="cd ~/dev/waRRior"
+alias warrior="cd ~/dev/waRRior && tmux new-session -s warrior"
+alias metabird="cd ~/dev/metabird && tmux new-session -s metabird"
+alias metamodules="cd ~/dev/metamodules && tmux new-session -s metamodules"
+alias metabirdapp="cd ~/dev/metabirdapp && tmux new-session -s metabirdapp"
 alias aos='cd ~/dev/AceOfSpades'
 alias uc22='cd ~/dev/uc22_app_dev'
 # Edit config files

@@ -1,5 +1,7 @@
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 # Start a TMUX session if not already running
-#if [ "$TMUX" = "" ]; then tmux attach -t base || tmux new -s base; fi
+if [ "$TMUX" = "" ]; then tmux attach -t base || tmux new -s base; fi
 #
 # Autocomplete for Home-brew
 if type brew &>/dev/null; then
@@ -16,8 +18,9 @@ autoload -Uz compinit && compinit -i
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/$USER/.oh-my-zsh"
 
-# Ruby
-PATH=$PATH:$(ruby -e 'puts Gem.bindir')
+# PATHS
+export PATH=$PATH:$(ruby -e 'puts Gem.bindir')
+export PATH=$PATH:/Users/federerj/Library/Python/3.8/bin
 
 
 # Set name of the theme to load --- if set to "random", it will

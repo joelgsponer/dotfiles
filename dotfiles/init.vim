@@ -54,17 +54,21 @@ tnoremap <C-UP> <C-\><C-n> :FZFRhistory<CR>
 """ <ceader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
+nmap ff <Plug>(easymotion-overwin-f)
 
 """ s{char}{char} to move to {char}{char}
-nmap <Leader>s <Plug>(easymotion-overwin-f2)
+map <Leader>s <Plug>(easymotion-overwin-f2)
+map fff <Plug>(easymotion-overwin-f2)
 
 """ Move to line
 map <Leader>l <Plug>(easymotion-bd-jk)
+nmap <Leader>l <Plug>(easymotion-overwin-line)
 nmap <Leader>l <Plug>(easymotion-overwin-line)
 
 """ Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
+nmap ww <Plug>(easymotion-overwin-w)
 " You can use other keymappings like <C-l> instead of <CR> if you want to
 " use these mappings as default search and sometimes want to move cursor with
 " EasyMotion.
@@ -102,6 +106,7 @@ colorscheme one
 
 " Settings
 let NERDTreeShowHidden=1
+set hidden
 set nocompatible            " disable compatibility to old-time vi
 set showmatch               " show matching brackets.
 set showcmd
@@ -111,7 +116,7 @@ set tabstop=2               " number of columns occupied by a tab character
 set softtabstop=2           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
 set shiftwidth=2            " width for autoindents
-set autoindent              " indent a new line the same amount as the line just typed
+set cindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 "set number relativenumber
 augroup numbertoggle
@@ -132,11 +137,20 @@ set timeoutlen=200
 set termguicolors
 set guicursor=n-c-v:block-Cursor/Cursor-blinkon0
 set guicursor+=i-ci:ver1-Cursor/Cursor-blinkwait300-blinkon200-blinkoff150
+set history=1000
+set undolevels=1000
+set title
+set visualbell
+set noerrorbells
+set nobackup
+set noswapfile
+set pastetoggle=<F2>
 
 """""""""""""""""""""""
 " Key mapping
 " Copy and pasting
-nnoremap <c-a> <c-v>
+nnoremap <c-e> <c-v>
+nnoremap <c-a> <Esc>GVgg 
 vmap <C-c> "*y 
 noremap <C-v> "0p
 vnoremap <C-v> "0p
@@ -147,7 +161,7 @@ inoremap <C-z> <ESC>u
 vnoremap <C-z> <ESC>u
 nnoremap <CR> o<Esc>
 nnoremap R ciw
-nnoremap <C-r> <Esc>:source $MYVIMRC<CR>
+command! Src :source $MYVIMRC
 " Undo
 "inoremap <C-z> <ESC>u
 "nnoremap <C-z> <ESC>u
@@ -172,6 +186,10 @@ nnoremap <C-q> :q!<CR>
 inoremap <C-q> <Esc>:q!<CR>
 xnoremap <C-q> <Esc>:q!<CR>
 vnoremap <C-q> <Esc>:q!<CR>
+nnoremap <C-w> :wq!<CR>
+inoremap <C-w> <Esc>:wq!<CR>
+xnoremap <C-w> <Esc>:wq!<CR>
+vnoremap <C-w> <Esc>:wq!<CR>
 " Tab navigation
 "nnoremap th  :tabfirst<CR>
 "nnoremap tk  :tabnext<CR>
@@ -212,6 +230,7 @@ inoremap ˚ <Esc>:m .-2<CR>==gi
 inoremap ∆ <Esc>:m .+1<CR>==gi
 vnoremap ˚ :m '<-2<CR>gv=gv
 vnoremap ∆ :m '>+1<CR>gv=gv
+
 " Arrows
 inoremap <Up> <ESC><UP>
 inoremap <DOWN> <ESC><Down>
@@ -221,9 +240,15 @@ inoremap <LeftMouse> <LeftMouse><Esc>
 
 " Macro type command
 " Spread on new line after comma
-nnoremap <Leader>m, f,a<CR><ESC>
+command! MReflowParams :normal f,r<CR><ESC>
 nnoremap <Leader>m. f(a<CR><ESC>k%i<CR><C-d><ESC>v%j 
-
+"*******************************************************************************
+"**************************         Snippets         ***************************
+"*******************************************************************************
+command! Banner :r! R --slave -e 'suppressMessages(library(waRRior));waRRior::banner("<cword>")'
+command! Divider :r! R --slave -e 'suppressMessages(library(waRRior));waRRior::divider()'
+command! Function :r! R --slave -e 'suppressMessages(library(waRRior));waRRior::skeleton_function("<cword>")'
+"#===============================================================================
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
 " Buffer navigation
@@ -242,7 +267,6 @@ map <F2> <Plug>RStart
 imap <F2> <Plug>RStart
 vmap <F2> <Plug>RStart
 vmap <Space> <C-c><C-c>
-"<Plug>RDSendSelection
 nmap <Space> <C-c><C-c>
 "<Plug>RDSendLine
 " Ensures usage of your own ~/.tmux.conf file
@@ -401,5 +425,5 @@ highlight StatusLine guibg=darkgreen
 
 function! _EscapeText_r(text)
   call system("cat > ~/.slime_r", a:text)
-  return ["source('~/.slime_r', echo = TRUE, max.deparse.length = 4095)\r"]
+  return ["source('~/.slime_r', echo = TRUE, max.deparse.length = 4095, local = TRUE)\r"]
 endfunction
