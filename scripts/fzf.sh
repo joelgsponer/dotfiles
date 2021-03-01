@@ -50,6 +50,21 @@ cp -f "/Users/federerj/Library/ApplicationSupport/Google/Chrome/Profile 1/Histor
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
 }
 
+y() {
+  echo "Opening clipboard"
+  local cols sep
+  cols=$(( COLUMNS / 3 ))
+  sep='{::}'
+
+  cp -f '/Users/federerj/Library/Application Support/BetterTouchTool/BTTClipboardManager.sqlite' /tmp/h
+
+  sqlite3 -separator $sep /tmp/h \
+    "select replace(ZPREVIEWTEXT, X'0A', '\n')
+     from ZBTTCLIP order by ZDATE" |
+  fzf | pbcopy
+}
+
+
 tm() {
   [[ -n "$TMUX" ]] && change="switch-client" || change="attach-session"
   if [ $1 ]; then

@@ -3,24 +3,21 @@
 " PLUGINS
 """"""""""""""""""""""
 call plug#begin('~/.config/nvim/plugged')
+Plug 'vimwiki/vimwiki'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'sheerun/vim-polyglot'
-"Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'easymotion/vim-easymotion'
 "Plug 'tpope/vim-surround'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-easymotion.vim'
-"Plug 'kassio/neoterm'
 Plug 'tpope/vim-fugitive'
 Plug 'rakr/vim-one'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'junegunn/vim-peekaboo'
 Plug 'jpalardy/vim-slime'
-"Plug 'fcpg/vim-osc52'
 call plug#end()
 
 " Plugin Setting
@@ -94,17 +91,12 @@ nnoremap <C-f> <Esc> /
 inoremap <C-f> <Esc> /
 vnoremap <C-f> <Esc> /
 xnoremap <C-f> <Esc> /
-
+" Nerd Tree
 map <C-n> :NERDTreeToggle<CR>
-let g:neoterm_term_per_tab=1
-let g:neoterm_autoinsert=1
-let g:neoterm_shell='/bin/bash'
-let g:neoterm_default_mod='botright'
-"
-set background=dark
-colorscheme one
 
 " Settings
+set background=dark
+colorscheme one
 let NERDTreeShowHidden=1
 set hidden
 set nocompatible            " disable compatibility to old-time vi
@@ -118,12 +110,11 @@ set expandtab               " converts tabs to white space
 set shiftwidth=2            " width for autoindents
 set cindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
-"set number relativenumber
 augroup numbertoggle
-"autocmd! -> depreceate?
 autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
 autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
+
 set nowrap
 set cursorline
 set clipboard=unnamedplus
@@ -132,6 +123,7 @@ set ignorecase
 set smartcase
 set incsearch
 syntax on                   " syntax highlighting
+filetype plugin on
 filetype plugin indent on   " allows auto-indenting depending on file type
 set timeoutlen=200
 set termguicolors
@@ -148,35 +140,10 @@ set pastetoggle=<F2>
 
 """""""""""""""""""""""
 " Key mapping
-" Copy and pasting
-nnoremap <c-e> <c-v>
-nnoremap <c-a> <Esc>GVgg 
-vmap <C-c> "*y 
-noremap <C-v> "0p
-vnoremap <C-v> "0p
 " General
 nnoremap GG GVgg
-nnoremap <C-z> <ESC>u
-inoremap <C-z> <ESC>u
-vnoremap <C-z> <ESC>u
 nnoremap <CR> o<Esc>
-nnoremap R ciw
 command! Src :source $MYVIMRC
-" Undo
-"inoremap <C-z> <ESC>u
-"nnoremap <C-z> <ESC>u
-"vnoremap <C-z> <ESC>u
-" Indentation
-inoremap <C-]> <C-t>
-inoremap <C-[> <C-d>
-nnoremap <C-]> >>
-nnoremap <C-[> <<
-vnoremap <C-]> >gv
-vnoremap <C-[> <gv
-" Brackets
-inoremap () ()<ESC>i
-inoremap {} {}<ESC>i
-inoremap [] []<ESC>i
 " Saving
 nnoremap <C-s> <Esc>:w<CR>
 inoremap <C-s> <Esc>:w<CR>
@@ -186,19 +153,6 @@ nnoremap <C-q> :q!<CR>
 inoremap <C-q> <Esc>:q!<CR>
 xnoremap <C-q> <Esc>:q!<CR>
 vnoremap <C-q> <Esc>:q!<CR>
-nnoremap <C-w> :wq!<CR>
-inoremap <C-w> <Esc>:wq!<CR>
-xnoremap <C-w> <Esc>:wq!<CR>
-vnoremap <C-w> <Esc>:wq!<CR>
-" Tab navigation
-"nnoremap th  :tabfirst<CR>
-"nnoremap tk  :tabnext<CR>
-"nnoremap tj  :tabprev<CR>
-"nnoremap tl  :tablast<CR>
-"nnoremap tt  :tabedit<CR>
-"nnoremap tm  :tabm<CR>
-"nnoremap tn  :tabnew<CR>
-"nnoremap td  :tabclose<CR>
 " esc in insert mode
 nnoremap kj <esc>
 nnoremap kj <esc>
@@ -206,31 +160,17 @@ cnoremap kj <esc>
 vnoremap kj <esc>
 inoremap kj <esc>
 tnoremap kj <C-\><C-n>
-xnoremap jh <esc>
-cnoremap jh <esc>
-vnoremap jh <esc>
-inoremap jh <esc>
-tnoremap jh <C-\><C-n>
-xnoremap jh <esc>
-nnoremap `` <esc>
-inoremap `` <esc>
-cnoremap `` <esc>
-vnoremap `` <esc>
-xnoremap `` <esc>
-inoremap ``  <esc>
 tnoremap <Esc> <C-\><C-n>
 " Select completion
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Line moving
-" nnoremap ª :m .+1<CR>==:
 nnoremap ˚ :m .-2<CR>==
 nnoremap ∆ :m .+<CR>==
 inoremap ˚ <Esc>:m .-2<CR>==gi
 inoremap ∆ <Esc>:m .+1<CR>==gi
 vnoremap ˚ :m '<-2<CR>gv=gv
 vnoremap ∆ :m '>+1<CR>gv=gv
-
 " Arrows
 inoremap <Up> <ESC><UP>
 inoremap <DOWN> <ESC><Down>
@@ -241,7 +181,6 @@ inoremap <LeftMouse> <LeftMouse><Esc>
 " Macro type command
 " Spread on new line after comma
 command! MReflowParams :normal f,r<CR><ESC>
-nnoremap <Leader>m. f(a<CR><ESC>k%i<CR><C-d><ESC>v%j 
 "*******************************************************************************
 "**************************         Snippets         ***************************
 "*******************************************************************************
@@ -251,30 +190,15 @@ command! Function :r! R --slave -e 'suppressMessages(library(waRRior));waRRior::
 "#===============================================================================
 " Activate spell checker
 nnoremap <leader>s :set invspell<CR>
-" Buffer navigation
 
-" Raa
+" Nvimr
 function StartRFromPath(path)
     let g:R_path = a:path
     call StartR("R")
 endfunction
-
 command! R363 :call StartRFromPath('/opt/bee_tools/R/3.6.3/bin')<CR>
 command! R361 :call StartRFromPath('/opt/bee_tools/R/3.6.1/bin')<CR>
 command! R :call StartR("R") 
-
-map <F2> <Plug>RStart 
-imap <F2> <Plug>RStart
-vmap <F2> <Plug>RStart
-vmap <Space> <C-c><C-c>
-nmap <Space> <C-c><C-c>
-"<Plug>RDSendLine
-" Ensures usage of your own ~/.tmux.conf file
-let R_notmuxconf = 1
-" Shows function arguments in a separate viewport during omni completion with Ctrl-x Ctrl-o:w i
-let R_show_args = 1
-" Use Ctrl-Space to do omnicompletion
-inoremap <C-Space> <C-x><C-o>
 let R_assign = 0
 let R_app = "radian"
 let R_cmd = "R"
